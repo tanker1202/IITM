@@ -1,19 +1,9 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
 
-# Enable CORS for all origins
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["GET"],
-    allow_headers=["*"],
-)
-
-# Dummy marks database
 with open("q-vercel-python.json", "r") as f:
     marks_db = json.load(f)
 
