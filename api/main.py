@@ -15,8 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api")
-async def get_marks(request: Request):
-    names = request.query_params.getlist("name")
-    marks = [marks_db.get(name, 0) for name in names]
-    return JSONResponse(content={"marks": marks})
+@app.get("/")
+async def get_marks(name: List[str] = []):
+    result = [MARKS_DB.get(n, 0) for n in name]
+    return JSONResponse(content={"marks": result})
