@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import json
@@ -16,10 +16,10 @@ app.add_middleware(
 )
 
 @app.get("/")
-async def print():
+async def home():
     return {"message": "Hello, World!"}
 
 @app.get("/api")
-async def get_marks(name: list[str] = []):
+async def get_marks(name: list[str] = Query([])):
     result = [marks_db.get(n, 0) for n in name]
     return JSONResponse(content={"marks": result})
