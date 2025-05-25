@@ -5,7 +5,7 @@ import json
 
 app = FastAPI()
 
-with open("api/q-vercel-python.json", "r") as f:
+with open("q-vercel-python.json", "r") as f:
     marks_db = json.load(f)
 
 app.add_middleware(
