@@ -21,6 +21,9 @@ async def home():
     return {"message": "Hello, World!"}
 
 @app.get("/api")
-async def get_marks(name: List[str] = Query([])):
-    result = [marks_db.get(n, 0) for n in name]
+async def get_marks(name: List[str] = Query(default=[])):
+    result = [
+        marks_db["marks"] if marks_db["name"] == n else 0
+        for n in name
+    ]
     return JSONResponse(content={"marks": result})
