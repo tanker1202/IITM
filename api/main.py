@@ -16,6 +16,10 @@ app.add_middleware(
 )
 
 @app.get("/")
+async def print():
+    return {"message": "Hello, World!"}
+
+@app.get("/api")
 async def get_marks(name: List[str] = []):
     result = [MARKS_DB.get(n, 0) for n in name]
     return JSONResponse(content={"marks": result})
