@@ -21,5 +21,5 @@ async def print():
 
 @app.get("/api")
 async def get_marks(name: list[str] = []):
-    result = [MARKS_DB.get(n, 0) for n in name]
+    result = [marks_db.get(n, 0) for n in name]
     return JSONResponse(content={"marks": result})
